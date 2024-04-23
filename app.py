@@ -7,6 +7,16 @@ app = Flask(__name__)
 @app.route('/', defaults={'filename': 'file1.txt'},methods=['GET'])
 @app.route('/<filename>', methods=['GET'])
 def display_file(filename):
+    """
+    Display the contents of a text file.
+
+    Args:
+        filename (str): The name of the text file to display. Defaults to 'file1.txt' if not provided.
+
+    Returns:
+        str: Rendered HTML template with the contents of the specified text file.
+        If an error occurs, the error message is rendered using the 'error.html' template.
+    """
     try:
         start_line = request.args.get('start_line', type=int)
         end_line = request.args.get('end_line', type=int)
